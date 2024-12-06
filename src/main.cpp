@@ -42,11 +42,27 @@ int main(int argc, char** argv) {
 
     std::cout << "Successfully contructed pixel matrix!" << std::endl;
     std::cout << "Pixel matrix size: " << w << " x " << h << std::endl; 
-    std::cout << "Iterating through pixel contents: " << std::endl;
-    std::cout << "Pointer here\n";
-    for (std::size_t i{ 0 }; i < pixelArray.size(); ++i)
-        for (std::size_t j{ 0 }; j < pixelArray[i].size(); ++j) {
-            std::cout << "(" << pixelArray[i][j][0] << ", " << pixelArray[i][j][1] << ", " << pixelArray[i][j][2] << ")" << std::endl;
+    //std::cout << "Iterating through pixel contents: " << std::endl;
+    //for (std::size_t i{ 0 }; i < pixelArray.size(); ++i)
+    //    for (std::size_t j{ 0 }; j < pixelArray[i].size(); ++j) {
+    //        std::cout << "(" << pixelArray[i][j][0] << ", " << pixelArray[i][j][1] << ", " << pixelArray[i][j][2] << ")" << std::endl;
+    //    }
+
+    std::vector<std::vector<int>> brightnessMatrix(
+            w,
+            std::vector<int>(h)
+    );
+    for (std::size_t i{ 0 }; i < w; ++i)
+        for (std::size_t j{ 0 }; j < h; ++j) {
+            brightnessMatrix[i][j] = (int)(((double)pixelArray[i][j][0] + (double)pixelArray[i][j][1] + (double)pixelArray[i][j][2]) / 3.0);
+        }
+
+    std::cout << "Successfully constructed brightness matrix!" << std::endl;
+    std::cout << "Brightness matrix size: " << w << " x " << h << std::endl;
+    std::cout << "Iterating throught pixel brightnesses:" << std::endl;
+    for (std::size_t i{ 0 }; i < w; ++i)
+        for (std::size_t j{ 0 }; j < h; ++j) {
+            std::cout << brightnessMatrix[i][j] << std::endl;
         }
 
 
